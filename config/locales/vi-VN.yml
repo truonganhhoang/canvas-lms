@@ -1,4 +1,7 @@
-en-GB:
+# This YAML file is auto-generated from a translation import.
+# Do not edit it by hand, your changes will be overwritten.
+---
+vi-VN:
   1_item_scores_5512cd03: 1- Điểm mục
   1_item_scores_examplescores_9736236: '1- Điểm mục: %{exampleScores}'
   1_user_found_76399771: 1 người được tìm thấy.
