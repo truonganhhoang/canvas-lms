@@ -59,7 +59,7 @@ import sv from '@instructure/translations/lib/canvas-rce/sv.json'
 import sv_K12 from '@instructure/translations/lib/canvas-rce/sv-x-k12.json'
 import tr from '@instructure/translations/lib/canvas-rce/tr.json'
 import uk from '@instructure/translations/lib/canvas-rce/uk_UA.json'
-import vi from '@instructure/translations/lib/canvas-rce/vi.json'
+import vi from '@instructure/translations/lib/canvas-rce/vi_VN.json'
 import zh from '@instructure/translations/lib/canvas-rce/zh.json'
 import zh_HK from '@instructure/translations/lib/canvas-rce/zh_HK.json'
 

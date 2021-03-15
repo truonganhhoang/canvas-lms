@@ -20,4 +20,4 @@ import formatMessage from '../format-message'
 import locale from '@instructure/translations/lib/canvas-rce/vi_VN.json'
 import '../rce/languages/vi_VN'
 
-formatMessage.addLocale({'en-GB': locale})
+formatMessage.addLocale({'vi_VN': locale})
