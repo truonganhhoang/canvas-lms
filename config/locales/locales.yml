@@ -1775,9 +1775,6 @@ zh-Hant:
       tiny: "%k:%M"
       tiny_on_the_hour: "%k:%M"
   proper_noun_singular_genitive: "%{noun}"
-vi:
+vi-VN:
   locales:
-    vi: Vietnammese
-vi-GB:
-  locales:
-    vi-GB: Tieng Viet
+    vi-VN: Vietnamese (Tiếng Việt)

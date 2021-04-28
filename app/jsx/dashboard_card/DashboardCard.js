@@ -393,6 +393,9 @@ export default class DashboardCard extends Component {
           aria-label={I18n.t('Actions for %{course}', {course: this.state.nicknameInfo.nickname})}
         >
           {this.linksForCard()}
+          <a className="btn btn-primary" href={'/courses/buy?course_id=' + this.props.id}>
+            Buy
+          </a>
         </nav>
       </div>
     )

@@ -3430,7 +3430,57 @@ class CoursesController < ApplicationController
     end
   end
 
+  def buy
+    course_id = params[:course_id]
+    if user_bought_course?(@current_user.id, course_id)
+      course = Course.find(course_id)
+      flash[:notice] = "You was bought course #{course.name}!"
+      return redirect_to dashboard_path
+    end
+
+    #TODO: Update price after update
+    price = Course.find(course_id)
+    url = Services::VnPayPaymentService.new(1000000, "course_id_#{course_id}").generate_url
+    redirect_to url
+  end
+
+  def vnpay_callback
+    amount = params[:vnp_Amount]
+    bank_code = params[:vnp_BankCode]
+    bank_tran_no = params[:vnp_BankTranNo]
+    card_type = params[:vnp_CardType]
+    order_info = params[:vnp_OrderInfo]
+    pay_date = params[:vnp_PayDate]
+    course_id = order_info.gsub("course_id_", "")
+
+    if user_bought_course?(@current_user.id, course_id)
+      course = Course.find(course_id)
+      flash[:notice] = "You was bought course #{course.name}!"
+      return redirect_to dashboard_path
+    end
+
+    payment_transaction = PaymentTransaction.create(
+      payment_type: :vn_pay_transaction,
+      amount: amount,
+      bank_code: bank_code,
+      bank_tran_no: bank_tran_no,
+      card_type: card_type,
+      order_info: order_info,
+      pay_date: pay_date,
+      user_id: @current_user.id,
+      course_id: order_info.gsub("course_id_", "")
+    )
+
+    course = Course.find(course_id)
+    flash[:notice] = "You was bought course #{course.name}!"
+    redirect_to course_path(id: course_id)
+  end
+
   private
+
+  def user_bought_course? user_id, course_id
+    PaymentTransaction.find_by(user_id: user_id, course_id: course_id).present?
+  end
 
   def update_grade_passback_setting(grade_passback_setting)
     valid_states = Setting.get('valid_grade_passback_settings', 'nightly_sync,disabled').split(',')
